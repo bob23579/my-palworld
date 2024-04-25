@@ -1,12 +1,11 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
+	"my-palworld/helper"
 	"my-palworld/routers"
 	"os"
 	"os/exec"
-	"strings"
 )
 
 // 判断文件是否存在
@@ -24,7 +23,10 @@ func pause() {
 	cmd := exec.Command("cmd", "/c", "pause")
 	cmd.Stdout = os.Stdout
 	cmd.Stdin = os.Stdin
-	cmd.Run()
+	err := cmd.Run()
+	if err != nil {
+		return
+	}
 }
 func checkServerPath() bool {
 	// 暂时写死
@@ -50,130 +52,26 @@ func startWebUI() {
 	}
 }
 
-func readGameConfigFile() {
-
-	// 配置位置
-	// 先查找游戏自定义配置，如果有则读取内容，读取到匹配行后修改匹配到的数据，如果没有则使用默认配置
-	// 读取当前目录下的文件 DefaultPalWorldSettings.ini
-	file, err := os.Open("example.ini")
-	if err != nil {
-		fmt.Println("无法打开文件:", err)
-		return
-	}
-	defer file.Close()
-
-	// 创建一个新的 bufio 读取器
-	scanner := bufio.NewScanner(file)
-
-	// 用于存储修改后的文件内容
-	var modifiedLines []string
-
-	// 循环读取文件的每一行并进行处理
-	for scanner.Scan() {
-		line := scanner.Text()
-		// 根据匹配条件修改行内容
-		if strings.HasPrefix(line, "OptionSettings=(") {
-			fmt.Println("修改前的内容: ")
-			fmt.Println(line)
-			// 去除开头和结尾
-
-		}
-		// 将修改后的行添加到切片中
-		modifiedLines = append(modifiedLines, line)
-	}
-
-	// 检查扫描过程是否出错
-	if err := scanner.Err(); err != nil {
-		fmt.Println("扫描文件出错:", err)
-		return
-	}
-
-	// 打开文件以便写入（截断原文件）
-	outputFile, err := os.Create("example.txt")
-	if err != nil {
-		fmt.Println("无法创建文件:", err)
-		return
-	}
-	defer outputFile.Close()
-
-	// 创建一个新的 bufio 写入器
-	writer := bufio.NewWriter(outputFile)
-
-	// 将修改后的内容写入文件
-	for _, line := range modifiedLines {
-		_, err := writer.WriteString(line + "\n")
-		if err != nil {
-			fmt.Println("写入文件出错:", err)
-			return
-		}
-	}
-
-	// 刷新缓冲区以确保所有数据都写入文件
-	err = writer.Flush()
-	if err != nil {
-		fmt.Println("刷新缓冲区出错:", err)
-		return
-	}
-
-	fmt.Println("文件修改成功")
-}
 func main() {
 
-	readGameConfigFile()
+	// 读取配置
+	helper.ReadGameConfigFile()
+
+	// 写入配置
+	err := helper.WriteGameConfigFile()
+	if err != nil {
+		fmt.Printf(err.Error())
+		return
+	}
 	// 获取系统信息
 	//go system.GetSystemInfo()
 	// 根据配置初始化之类。。。暂时跳过
 	// 找到服务器目录（从配置中读取/手动输入）
-	// 获取游戏状态
-	//game.GetGameStatus()
-	//
-	//for {
-	//	fmt.Println("请输入数字选择操作：")
-	//	fmt.Println("1. 启动游戏")
-	//	fmt.Println("2. 关闭游戏")
-	//	fmt.Println("3. 重启游戏")
-	//	fmt.Println("4. 更新游戏")
-	//	fmt.Println("5. 退出")
-	//
-	//	var choice int
-	//	_, err := fmt.Scanln(&choice)
-	//	if err != nil {
-	//		fmt.Println(err.Error())
-	//	}
-	//
-	//	switch choice {
-	//	case 1:
-	//		err = game.StartGame()
-	//		if err != nil {
-	//			fmt.Println(err)
-	//		}
-	//	case 2:
-	//		err = game.StopGame()
-	//		if err != nil {
-	//			fmt.Println(err)
-	//		}
-	//	case 3:
-	//		err = game.RestartGame()
-	//		if err != nil {
-	//			fmt.Println(err)
-	//		}
-	//	case 4:
-	//		err = game.UpdateGame()
-	//		if err != nil {
-	//			fmt.Println(err)
-	//		}
-	//	case 5:
-	//		fmt.Println("程序退出")
-	//		return
-	//	default:
-	//		fmt.Println("无效的选择，请重新输入。")
-	//	}
-	//}
 
 	// todo 读取配置，启动停止重启服务器操作
 	// 读取配置 后面做
 	// 启动web页面
-	//startWebUI()
+	// startWebUI()
 	// todo 制作web页面，加入gin框架
 
 	// 获取到当前路径

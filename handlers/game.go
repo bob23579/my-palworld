@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"my-palworld/config"
 	"my-palworld/game"
+	"my-palworld/helper"
 	"net/http"
 )
 
@@ -56,5 +57,19 @@ func UpdateGameHandler(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"code": 0, "message": "success"})
+
+}
+
+func GetGameConfigHandler(c *gin.Context) {
+
+	// 返回当前配置
+	// 读取配置
+	err := helper.ReadGameConfigFile()
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{"code": 201, "message": err.Error()})
+		return
+	}
+	// 将结构体返回
+	c.JSON(http.StatusOK, gin.H{"code": 0, "data": config.EditGameConfig, "message": "success"})
 
 }

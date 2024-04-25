@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"my-palworld/helper"
 	"my-palworld/routers"
 	"os"
 	"os/exec"
@@ -55,14 +54,14 @@ func startWebUI() {
 func main() {
 
 	// 读取配置
-	helper.ReadGameConfigFile()
-
-	// 写入配置
-	err := helper.WriteGameConfigFile()
-	if err != nil {
-		fmt.Printf(err.Error())
-		return
-	}
+	//helper.ReadGameConfigFile()
+	//
+	//// 写入配置
+	//err := helper.WriteGameConfigFile()
+	//if err != nil {
+	//	fmt.Printf(err.Error())
+	//	return
+	//}
 	// 获取系统信息
 	//go system.GetSystemInfo()
 	// 根据配置初始化之类。。。暂时跳过
@@ -71,7 +70,7 @@ func main() {
 	// todo 读取配置，启动停止重启服务器操作
 	// 读取配置 后面做
 	// 启动web页面
-	// startWebUI()
+	startWebUI()
 	// todo 制作web页面，加入gin框架
 
 	// 获取到当前路径

@@ -9,74 +9,74 @@ type SystemInfo struct {
 	Time       string
 }
 type GameConfig struct {
-	Difficulty                           string
-	DayTimeSpeedRate                     float64
-	NightTimeSpeedRate                   float64
-	ExpRate                              float64
-	PalCaptureRate                       float64
-	PalSpawnNumRate                      float64
-	PalDamageRateAttack                  float64
-	PalDamageRateDefense                 float64
-	PlayerDamageRateAttack               float64
-	PlayerDamageRateDefense              float64
-	PlayerStomachDecreaceRate            float64
-	PlayerStaminaDecreaceRate            float64
-	PlayerAutoHPRegeneRate               float64
-	PlayerAutoHpRegeneRateInSleep        float64
-	PalStomachDecreaceRate               float64
-	PalStaminaDecreaceRate               float64
-	PalAutoHPRegeneRate                  float64
-	PalAutoHpRegeneRateInSleep           float64
-	BuildObjectDamageRate                float64
-	BuildObjectDeteriorationDamageRate   float64
-	CollectionDropRate                   float64
-	CollectionObjectHpRate               float64
-	CollectionObjectRespawnSpeedRate     float64
-	EnemyDropItemRate                    float64
-	DeathPenalty                         string
-	BEnablePlayerToPlayerDamage          bool
-	BEnableFriendlyFire                  bool
-	BEnableInvaderEnemy                  bool
-	BActiveUNKO                          bool
-	BEnableAimAssistPad                  bool
-	BEnableAimAssistKeyboard             bool
-	DropItemMaxNum                       int
-	DropItemMaxNum_UNKO                  int
-	BaseCampMaxNum                       int
-	BaseCampWorkerMaxNum                 int
-	DropItemAliveMaxHours                float64
-	BAutoResetGuildNoOnlinePlayers       bool
-	AutoResetGuildTimeNoOnlinePlayers    float64
-	GuildPlayerMaxNum                    int
-	PalEggDefaultHatchingTime            float64
-	WorkSpeedRate                        float64
-	BIsMultiplay                         bool
-	BIsPvP                               bool
-	BCanPickupOtherGuildDeathPenaltyDrop bool
-	BEnableNonLoginPenalty               bool
-	BEnableFastTravel                    bool
-	BIsStartLocationSelectByMap          bool
-	BExistPlayerAfterLogout              bool
-	BEnableDefenseOtherGuildPlayer       bool
-	CoopPlayerMaxNum                     int
-	ServerPlayerMaxNum                   int
-	ServerName                           string
-	ServerDescription                    string
-	AdminPassword                        string
-	ServerPassword                       string
-	PublicPort                           int
-	PublicIP                             string
-	RCONEnabled                          bool
-	RCONPort                             int
-	Region                               string
-	BUseAuth                             bool
-	BanListURL                           string
-	RESTAPIEnabled                       bool
-	RESTAPIPort                          int
-	BShowPlayerList                      bool
-	AllowConnectPlatform                 string
-	BIsUseBackupSaveData                 bool
-	LogFormatType                        string
+	Difficulty                           string  `json:"difficulty"`
+	DayTimeSpeedRate                     float64 `json:"day_time_speed_rate"`
+	NightTimeSpeedRate                   float64 `json:"night_time_speed_rate"`
+	ExpRate                              float64 `json:"exp_rate"`
+	PalCaptureRate                       float64 `json:"pal_capture_rate"`
+	PalSpawnNumRate                      float64 `json:"pal_spawn_num_rate"`
+	PalDamageRateAttack                  float64 `json:"pal_damage_rate_attack"`
+	PalDamageRateDefense                 float64 `json:"pal_damage_rate_defense"`
+	PlayerDamageRateAttack               float64 `json:"player_damage_rate_attack"`
+	PlayerDamageRateDefense              float64 `json:"player_damage_rate_defense"`
+	PlayerStomachDecreaceRate            float64 `json:"player_stomach_decreace_rate"`
+	PlayerStaminaDecreaceRate            float64 `json:"player_stamina_decreace_rate"`
+	PlayerAutoHPRegeneRate               float64 `json:"player_auto_hp_regene_rate"`
+	PlayerAutoHpRegeneRateInSleep        float64 `json:"player_auto_hp_regene_rate_in_sleep"`
+	PalStomachDecreaceRate               float64 `json:"pal_stomach_decreace_rate"`
+	PalStaminaDecreaceRate               float64 `json:"pal_stamina_decreace_rate"`
+	PalAutoHPRegeneRate                  float64 `json:"pal_auto_hp_regene_rate"`
+	PalAutoHpRegeneRateInSleep           float64 `json:"pal_auto_hp_regene_rate_in_sleep"`
+	BuildObjectDamageRate                float64 `json:"build_object_damage_rate"`
+	BuildObjectDeteriorationDamageRate   float64 `json:"build_object_deterioration_damage_rate"`
+	CollectionDropRate                   float64 `json:"collection_drop_rate"`
+	CollectionObjectHpRate               float64 `json:"collection_object_hp_rate"`
+	CollectionObjectRespawnSpeedRate     float64 `json:"collection_object_respawn_speed_rate"`
+	EnemyDropItemRate                    float64 `json:"enemy_drop_item_rate"`
+	DeathPenalty                         string  `json:"death_penalty"`
+	BEnablePlayerToPlayerDamage          bool    `json:"b_enable_player_to_player_damage"`
+	BEnableFriendlyFire                  bool    `json:"b_enable_friendly_fire"`
+	BEnableInvaderEnemy                  bool    `json:"b_enable_invader_enemy"`
+	BActiveUNKO                          bool    `json:"b_active_unko"`
+	BEnableAimAssistPad                  bool    `json:"b_enable_aim_assist_pad"`
+	BEnableAimAssistKeyboard             bool    `json:"b_enable_aim_assist_keyboard"`
+	DropItemMaxNum                       int     `json:"drop_item_max_num"`
+	DropItemMaxNum_UNKO                  int     `json:"drop_item_max_num_unko"`
+	BaseCampMaxNum                       int     `json:"base_camp_max_num"`
+	BaseCampWorkerMaxNum                 int     `json:"base_camp_worker_max_num"`
+	DropItemAliveMaxHours                float64 `json:"drop_item_alive_max_hours"`
+	BAutoResetGuildNoOnlinePlayers       bool    `json:"b_auto_reset_guild_no_online_players"`
+	AutoResetGuildTimeNoOnlinePlayers    float64 `json:"auto_reset_guild_time_no_online_players"`
+	GuildPlayerMaxNum                    int     `json:"guild_player_max_num"`
+	PalEggDefaultHatchingTime            float64 `json:"pal_egg_default_hatching_time"`
+	WorkSpeedRate                        float64 `json:"work_speed_rate"`
+	BIsMultiplay                         bool    `json:"b_is_multiplay"`
+	BIsPvP                               bool    `json:"b_is_pv_p"`
+	BCanPickupOtherGuildDeathPenaltyDrop bool    `json:"b_can_pickup_other_guild_death_penalty_drop"`
+	BEnableNonLoginPenalty               bool    `json:"b_enable_non_login_penalty"`
+	BEnableFastTravel                    bool    `json:"b_enable_fast_travel"`
+	BIsStartLocationSelectByMap          bool    `json:"b_is_start_location_select_by_map"`
+	BExistPlayerAfterLogout              bool    `json:"b_exist_player_after_logout"`
+	BEnableDefenseOtherGuildPlayer       bool    `json:"b_enable_defense_other_guild_player"`
+	CoopPlayerMaxNum                     int     `json:"coop_player_max_num"`
+	ServerPlayerMaxNum                   int     `json:"server_player_max_num"`
+	ServerName                           string  `json:"server_name"`
+	ServerDescription                    string  `json:"server_description"`
+	AdminPassword                        string  `json:"admin_password"`
+	ServerPassword                       string  `json:"server_password"`
+	PublicPort                           int     `json:"public_port"`
+	PublicIP                             string  `json:"public_ip"`
+	RCONEnabled                          bool    `json:"rcon_enabled"`
+	RCONPort                             int     `json:"rcon_port"`
+	Region                               string  `json:"region"`
+	BUseAuth                             bool    `json:"b_use_auth"`
+	BanListURL                           string  `json:"ban_list_url"`
+	RESTAPIEnabled                       bool    `json:"restapi_enabled"`
+	RESTAPIPort                          int     `json:"restapi_port"`
+	BShowPlayerList                      bool    `json:"b_show_player_list"`
+	AllowConnectPlatform                 string  `json:"allow_connect_platform"`
+	BIsUseBackupSaveData                 bool    `json:"b_is_use_backup_save_data"`
+	LogFormatType                        string  `json:"log_format_type"`
 }
 
 func getBoolString(b bool) string {
@@ -88,7 +88,7 @@ func getBoolString(b bool) string {
 }
 func (s GameConfig) ToString() string {
 	// 使用字符串拼接将结构体字段连接为一个字符串
-	str := fmt.Sprintf("OptionSettings=(Difficulty=%s,DayTimeSpeedRate=%f,NightTimeSpeedRate=%f,ExpRate=%f,PalCaptureRate=%f,PalSpawnNumRate=%f,PalDamageRateAttack=%f,PalDamageRateDefense=%f,PlayerDamageRateAttack=%f,PlayerDamageRateDefense=%f,PlayerStomachDecreaceRate=%f,PlayerStaminaDecreaceRate=%f,PlayerAutoHPRegeneRate=%f,PlayerAutoHpRegeneRateInSleep=%f,PalStomachDecreaceRate=%f,PalStaminaDecreaceRate=%f,PalAutoHPRegeneRate=%f,PalAutoHpRegeneRateInSleep=%f,BuildObjectDamageRate=%f,BuildObjectDeteriorationDamageRate=%f,CollectionDropRate=%f,CollectionObjectHpRate=%f,CollectionObjectRespawnSpeedRate=%f,EnemyDropItemRate=%f,DeathPenalty=%s,bEnablePlayerToPlayerDamage=%s,bEnableFriendlyFire=%s,bEnableInvaderEnemy=%s,bActiveUNKO=%s,bEnableAimAssistPad=%s,bEnableAimAssistKeyboard=%s,DropItemMaxNum=%d,DropItemMaxNum_UNKO=%d,BaseCampMaxNum=%d,BaseCampWorkerMaxNum=%d,DropItemAliveMaxHours=%f,bAutoResetGuildNoOnlinePlayers=%s,AutoResetGuildTimeNoOnlinePlayers=%f,GuildPlayerMaxNum=%d,PalEggDefaultHatchingTime=%f,WorkSpeedRate=%f,bIsMultiplay=%s,bIsPvP=%s,bCanPickupOtherGuildDeathPenaltyDrop=%s,bEnableNonLoginPenalty=%s,bEnableFastTravel=%s,bIsStartLocationSelectByMap=%s,bExistPlayerAfterLogout=%s,bEnableDefenseOtherGuildPlayer=%s,CoopPlayerMaxNum=%d,ServerPlayerMaxNum=%d,ServerName=%s,ServerDescription=%s,AdminPassword=%s,ServerPassword=%s,PublicPort=%d,PublicIP=%s,RCONEnabled=%s,RCONPort=%d,Region=%s,bUseAuth=%s,BanListURL=%s,RESTAPIEnabled=%s,RESTAPIPort=%d,bShowPlayerList=%s,AllowConnectPlatform=%s,bIsUseBackupSaveData=%s,LogFormatType=%s)",
+	str := fmt.Sprintf("OptionSettings=(Difficulty=%s,DayTimeSpeedRate=%f,NightTimeSpeedRate=%f,ExpRate=%f,PalCaptureRate=%f,PalSpawnNumRate=%f,PalDamageRateAttack=%f,PalDamageRateDefense=%f,PlayerDamageRateAttack=%f,PlayerDamageRateDefense=%f,PlayerStomachDecreaceRate=%f,PlayerStaminaDecreaceRate=%f,PlayerAutoHPRegeneRate=%f,PlayerAutoHpRegeneRateInSleep=%f,PalStomachDecreaceRate=%f,PalStaminaDecreaceRate=%f,PalAutoHPRegeneRate=%f,PalAutoHpRegeneRateInSleep=%f,BuildObjectDamageRate=%f,BuildObjectDeteriorationDamageRate=%f,CollectionDropRate=%f,CollectionObjectHpRate=%f,CollectionObjectRespawnSpeedRate=%f,EnemyDropItemRate=%f,DeathPenalty=%s,bEnablePlayerToPlayerDamage=%s,bEnableFriendlyFire=%s,bEnableInvaderEnemy=%s,bActiveUNKO=%s,bEnableAimAssistPad=%s,bEnableAimAssistKeyboard=%s,DropItemMaxNum=%d,DropItemMaxNum_UNKO=%d,BaseCampMaxNum=%d,BaseCampWorkerMaxNum=%d,DropItemAliveMaxHours=%f,bAutoResetGuildNoOnlinePlayers=%s,AutoResetGuildTimeNoOnlinePlayers=%f,GuildPlayerMaxNum=%d,PalEggDefaultHatchingTime=%f,WorkSpeedRate=%f,bIsMultiplay=%s,bIsPvP=%s,bCanPickupOtherGuildDeathPenaltyDrop=%s,bEnableNonLoginPenalty=%s,bEnableFastTravel=%s,bIsStartLocationSelectByMap=%s,bExistPlayerAfterLogout=%s,bEnableDefenseOtherGuildPlayer=%s,CoopPlayerMaxNum=%d,ServerPlayerMaxNum=%d,ServerName=\"%s\",ServerDescription=\"%s\",AdminPassword=\"%s\",ServerPassword=\"%s\",PublicPort=%d,PublicIP=\"%s\",RCONEnabled=%s,RCONPort=%d,Region=\"%s\",bUseAuth=%s,BanListURL=\"%s\",RESTAPIEnabled=%s,RESTAPIPort=%d,bShowPlayerList=%s,AllowConnectPlatform=%s,bIsUseBackupSaveData=%s,LogFormatType=%s)",
 		s.Difficulty, s.DayTimeSpeedRate, s.NightTimeSpeedRate, s.ExpRate, s.PalCaptureRate, s.PalSpawnNumRate, s.PalDamageRateAttack, s.PalDamageRateDefense, s.PlayerDamageRateAttack, s.PlayerDamageRateDefense, s.PlayerStomachDecreaceRate, s.PlayerStaminaDecreaceRate, s.PlayerAutoHPRegeneRate, s.PlayerAutoHpRegeneRateInSleep, s.PalStomachDecreaceRate, s.PalStaminaDecreaceRate, s.PalAutoHPRegeneRate, s.PalAutoHpRegeneRateInSleep, s.BuildObjectDamageRate, s.BuildObjectDeteriorationDamageRate, s.CollectionDropRate, s.CollectionObjectHpRate, s.CollectionObjectRespawnSpeedRate, s.EnemyDropItemRate, s.DeathPenalty, getBoolString(s.BEnablePlayerToPlayerDamage), getBoolString(s.BEnableFriendlyFire), getBoolString(s.BEnableInvaderEnemy), getBoolString(s.BActiveUNKO), getBoolString(s.BEnableAimAssistPad), getBoolString(s.BEnableAimAssistKeyboard), s.DropItemMaxNum, s.DropItemMaxNum_UNKO, s.BaseCampMaxNum, s.BaseCampWorkerMaxNum, s.DropItemAliveMaxHours, getBoolString(s.BAutoResetGuildNoOnlinePlayers), s.AutoResetGuildTimeNoOnlinePlayers, s.GuildPlayerMaxNum, s.PalEggDefaultHatchingTime, s.WorkSpeedRate, getBoolString(s.BIsMultiplay), getBoolString(s.BIsPvP), getBoolString(s.BCanPickupOtherGuildDeathPenaltyDrop), getBoolString(s.BEnableNonLoginPenalty), getBoolString(s.BEnableFastTravel), getBoolString(s.BIsStartLocationSelectByMap), getBoolString(s.BExistPlayerAfterLogout), getBoolString(s.BEnableDefenseOtherGuildPlayer), s.CoopPlayerMaxNum, s.ServerPlayerMaxNum, s.ServerName, s.ServerDescription, s.AdminPassword, s.ServerPassword, s.PublicPort, s.PublicIP, getBoolString(s.RCONEnabled), s.RCONPort, s.Region, getBoolString(s.BUseAuth), s.BanListURL, getBoolString(s.RESTAPIEnabled), s.RESTAPIPort, getBoolString(s.BShowPlayerList), s.AllowConnectPlatform, getBoolString(s.BIsUseBackupSaveData), s.LogFormatType)
 	return str
 }

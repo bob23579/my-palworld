@@ -42,6 +42,7 @@ func SetupRouter() *gin.Engine {
 		gameGroup.GET("/stopGame", handlers.StopGameHandler)
 		gameGroup.GET("/restartGame", handlers.RestartGameHandler)
 		gameGroup.GET("/updateGame", handlers.UpdateGameHandler)
+		gameGroup.GET("/getGameConfig", handlers.GetGameConfigHandler)
 	}
 
 	// 服务器管理相关接口

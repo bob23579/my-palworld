@@ -35,7 +35,7 @@ func parseInt(s string) int {
 }
 
 // 读取游戏配置文件 对照进结构体，不修改文件
-func ReadGameConfigFile() {
+func ReadGameConfigFile() error {
 
 	// 配置位置
 	// 先查找游戏自定义配置，如果有则读取内容，读取到匹配行后修改匹配到的数据，如果没有则使用默认配置
@@ -43,7 +43,7 @@ func ReadGameConfigFile() {
 	file, err := os.Open("example.ini")
 	if err != nil {
 		fmt.Println("无法打开文件:", err)
-		return
+		return err
 	}
 	defer func(file *os.File) {
 		err := file.Close()
@@ -75,6 +75,8 @@ func ReadGameConfigFile() {
 		keyValue := strings.Split(pair, "=")
 		key := keyValue[0]
 		value := keyValue[1]
+		// 去除字符串中的双引号
+		value = strings.Replace(value, "\"", "", -1)
 
 		switch key {
 		case "Difficulty":
@@ -215,6 +217,8 @@ func ReadGameConfigFile() {
 			config.EditGameConfig.LogFormatType = value
 		}
 	}
+
+	return nil
 }
 
 // 写入游戏配置文件

@@ -269,5 +269,11 @@ func WriteGameConfigFile() error {
 }
 
 // 读取后台配置文件
+func ReadConfigFile() error {
+	// 配置文件名字 : palConfig.yml
+	// 如果没有则创建
+	// 如果有则读取并使用读取到的配置
+	return nil
+}
 
 // 写入后台配置文件

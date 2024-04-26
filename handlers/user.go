@@ -44,3 +44,9 @@ func GetUserInfo(c *gin.Context) {
 	name, _ := c.Get("username")
 	c.JSON(http.StatusOK, gin.H{"code": 0, "data": gin.H{"username": name, "roles": []string{"admin"}}})
 }
+
+func ModifyPassword(c *gin.Context) {
+	//
+
+	c.JSON(http.StatusOK, gin.H{"code": 0, "data": gin.H{"username": "hello", "roles": []string{"admin"}}})
+}

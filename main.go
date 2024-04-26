@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"my-palworld/helper"
 	"my-palworld/routers"
 	"os"
 	"os/exec"
@@ -33,7 +34,6 @@ func checkServerPath() bool {
 	// 如果文件不存在，提示用户
 	if fileNotExist(palServerExe) {
 		fmt.Printf("文件 %s 不存在\n", palServerExe)
-
 		pause()
 		return false
 	} else {
@@ -51,10 +51,29 @@ func startWebUI() {
 	}
 }
 
+func initConfig() error {
+	// 初始化配置文件
+	err := helper.ReadConfigFile()
+	if err != nil {
+		fmt.Printf(err.Error())
+		return err
+	}
+	err = helper.ReadGameConfigFile()
+	if err != nil {
+		return err
+	}
+	return nil
+}
 func main() {
 
+	err := initConfig()
+	if err != nil {
+		fmt.Printf("init config err: %s\n", err.Error())
+		return
+	}
+
 	// 读取配置
-	//helper.ReadGameConfigFile()
+
 	//
 	//// 写入配置
 	//err := helper.WriteGameConfigFile()

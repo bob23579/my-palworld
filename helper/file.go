@@ -3,6 +3,7 @@ package helper
 import (
 	"bufio"
 	"fmt"
+	"gopkg.in/yaml.v3"
 	"my-palworld/config"
 	"os"
 	"strconv"
@@ -270,10 +271,73 @@ func WriteGameConfigFile() error {
 
 // 读取后台配置文件
 func ReadConfigFile() error {
-	// 配置文件名字 : palConfig.yml
-	// 如果没有则创建
-	// 如果有则读取并使用读取到的配置
+	// 配置文件名字 : palConfig.yaml
+	configFile := config.CONFIG_FILE_NAME
+
+	// 检查配置文件是否存在
+	_, err := os.Stat(configFile)
+	if os.IsNotExist(err) {
+		// 如果配置文件不存在，则创建一个新的配置文件
+		err = createDefaultConfig(configFile)
+		if err != nil {
+			fmt.Println("Error creating default config file:", err)
+			return err
+		}
+		fmt.Println("Default config file created:", configFile)
+	}
+
+	// 读取配置文件
+	configData, err := os.ReadFile(configFile)
+	if err != nil {
+		fmt.Println("Error reading config file:", err)
+		return err
+	}
+
+	// 解析配置文件内容
+	err = yaml.Unmarshal(configData, &config.EditConfig)
+	if err != nil {
+		fmt.Println("Error parsing config file:", err)
+		return err
+	}
+
+	fmt.Println("Username:", config.EditConfig.Username)
+	fmt.Println("Password:", config.EditConfig.Password)
 	return nil
 }
 
 // 写入后台配置文件
+func WriteConfigFile() error {
+	// 将修改后的内容重新写入文件
+	newData, err := yaml.Marshal(&config.EditConfig)
+	if err != nil {
+		return err
+	}
+	if err := os.WriteFile(config.CONFIG_FILE_NAME, newData, 0644); err != nil {
+		return err
+	}
+	return nil
+}
+
+// 创建默认的配置文件
+
+func createDefaultConfig(filename string) error {
+	// 默认配置
+	defaultConfig := config.Config{
+		Username: "admin",
+		Password: "12345678",
+	}
+
+	// 将默认配置转换为 YAML 格式
+	defaultConfigData, err := yaml.Marshal(&defaultConfig)
+	if err != nil {
+		return err
+	}
+
+	// 写入到文件中
+	err = os.WriteFile(filename, defaultConfigData, 0644)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

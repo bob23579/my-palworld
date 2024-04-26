@@ -8,6 +8,12 @@ type SystemInfo struct {
 	DistList   string
 	Time       string
 }
+
+type Config struct {
+	Username string `yaml:"username"`
+	Password string `yaml:"password"`
+}
+
 type GameConfig struct {
 	Difficulty                           string  `json:"difficulty"`
 	DayTimeSpeedRate                     float64 `json:"day_time_speed_rate"`
@@ -123,12 +129,18 @@ const (
 	GameNotFound
 )
 
+var EditConfig = Config{
+	Username: "",
+	Password: "",
+}
+
 // 用户输入PalServer路径和steamcmd路径 保存到配置后，从配置中读取
 const STEAM_CMD_PATH = "C:\\steamcmd"
 const GAME_PATH = "C:\\steamcmd\\steamapps\\common\\PalServer"
 const GAME_NAME = "PalServer.exe"
 const GAME_CMD_NAME = "PalServer-Win64-Shipping-Cmd.exe"
 const GAME_TO_CMD_PATH = "\\Pal\\Binaries\\Win64\\"
+const CONFIG_FILE_NAME = "palConfig.yaml"
 
 var GameStatus = GameNotFound
 

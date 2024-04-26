@@ -34,7 +34,7 @@ func SetupRouter() *gin.Engine {
 	{
 		authGroup.POST("/login", handlers.LoginHandler)
 		authGroup.GET("/info", handlers.AuthMiddleware(), handlers.GetUserInfo)
-		authGroup.GET("/modifyPassword", handlers.AuthMiddleware(), handlers.ModifyPassword)
+		authGroup.POST("/modifyPassword", handlers.AuthMiddleware(), handlers.ModifyPassword)
 	}
 	gameGroup := r.Group("/api/game")
 	{

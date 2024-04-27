@@ -40,11 +40,15 @@ func ReadGameConfigFile() error {
 
 	// 配置位置
 	// 先查找游戏自定义配置，如果有则读取内容，读取到匹配行后修改匹配到的数据，如果没有则使用默认配置
-	// 读取当前目录下的文件 DefaultPalWorldSettings.ini
-	file, err := os.Open("example.ini")
+
+	file, err := os.Open(config.SERVER_CONFIG_FILE)
+
 	if err != nil {
-		fmt.Println("无法打开文件:", err)
-		return err
+		// 读取当前目录下的文件 DefaultPalWorldSettings.ini
+		file, err = os.Open(".\\DefaultPalWorldSettings.ini")
+		if err != nil {
+			return err
+		}
 	}
 	defer func(file *os.File) {
 		err := file.Close()
@@ -52,7 +56,19 @@ func ReadGameConfigFile() error {
 			fmt.Println(err)
 		}
 	}(file)
+	// 判断文件是否是空的,如果是 则读取本地文件
+	fileInfo, err := os.Stat(config.SERVER_CONFIG_FILE)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return err
+	}
 
+	if fileInfo.Size() < 10 {
+		file, err = os.Open(".\\DefaultPalWorldSettings.ini")
+		if err != nil {
+			return err
+		}
+	}
 	// 创建一个新的 bufio 读取器
 	scanner := bufio.NewScanner(file)
 
@@ -224,9 +240,10 @@ func ReadGameConfigFile() error {
 
 // 写入游戏配置文件
 func WriteGameConfigFile() error {
+
 	// 首先把前面部分写入
 	// 要写入的文件名
-	filename := "example-new.txt"
+	filename := config.SERVER_CONFIG_FILE
 
 	// 打开文件，如果文件不存在则创建，如果文件已存在则截断
 	file, err := os.Create(filename)
@@ -300,8 +317,6 @@ func ReadConfigFile() error {
 		return err
 	}
 
-	fmt.Println("Username:", config.EditConfig.Username)
-	fmt.Println("Password:", config.EditConfig.Password)
 	return nil
 }
 
@@ -338,6 +353,5 @@ func createDefaultConfig(filename string) error {
 	if err != nil {
 		return err
 	}
-
 	return nil
 }

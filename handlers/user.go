@@ -47,12 +47,12 @@ func LoginHandler(c *gin.Context) {
 	}
 }
 
-func GetUserInfo(c *gin.Context) {
+func GetUserInfoHandler(c *gin.Context) {
 	name, _ := c.Get("username")
 	c.JSON(http.StatusOK, gin.H{"code": 0, "data": gin.H{"username": name, "roles": []string{"admin"}}})
 }
 
-func ModifyPassword(c *gin.Context) {
+func ModifyPasswordHandler(c *gin.Context) {
 	// 判断旧密码是否正确,不正确返回,正确使用新密码
 	// 打印传入的数据
 	c.Param("oldPassword")

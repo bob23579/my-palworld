@@ -73,3 +73,28 @@ func GetGameConfigHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"code": 0, "data": config.EditGameConfig, "message": "success"})
 
 }
+func SetGameConfigHandler(c *gin.Context) {
+
+	err := c.BindJSON(&config.EditGameConfig)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{"code": 101, "message": err.Error()})
+		return
+	}
+	// 更新配置文件
+	err = helper.WriteGameConfigFile()
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{"code": 101, "message": err.Error()})
+		return
+	}
+	// 重启游戏应用设置
+	err = game.RestartGame()
+	if err != nil {
+
+		c.JSON(http.StatusOK, gin.H{"code": 101, "message": err.Error()})
+		return
+	}
+
+	// 更新完毕
+	c.JSON(http.StatusOK, gin.H{"code": 0, "message": "success"})
+
+}

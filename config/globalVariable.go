@@ -146,5 +146,5 @@ var GameStatus = GameNotFound
 
 var PalSteamCmdID = "2394010"
 
-// 配置文件地址 暂时设为本地地址
-const SERVER_CONFIG_FILE = "..\\DefaultPalWorldSettings.ini"
+// 配置文件地址
+const SERVER_CONFIG_FILE = ".\\Pal\\Saved\\Config\\WindowsServer\\PalWorldSettings.ini"

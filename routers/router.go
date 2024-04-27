@@ -33,8 +33,8 @@ func SetupRouter() *gin.Engine {
 	authGroup := r.Group("/api/users")
 	{
 		authGroup.POST("/login", handlers.LoginHandler)
-		authGroup.GET("/info", handlers.AuthMiddleware(), handlers.GetUserInfo)
-		authGroup.POST("/modifyPassword", handlers.AuthMiddleware(), handlers.ModifyPassword)
+		authGroup.GET("/info", handlers.AuthMiddleware(), handlers.GetUserInfoHandler)
+		authGroup.POST("/modifyPassword", handlers.AuthMiddleware(), handlers.ModifyPasswordHandler)
 	}
 	gameGroup := r.Group("/api/game")
 	{
@@ -44,6 +44,7 @@ func SetupRouter() *gin.Engine {
 		gameGroup.GET("/restartGame", handlers.AuthMiddleware(), handlers.RestartGameHandler)
 		gameGroup.GET("/updateGame", handlers.AuthMiddleware(), handlers.UpdateGameHandler)
 		gameGroup.GET("/getGameConfig", handlers.AuthMiddleware(), handlers.GetGameConfigHandler)
+		gameGroup.POST("/setGameConfig", handlers.AuthMiddleware(), handlers.SetGameConfigHandler)
 	}
 
 	// 服务器管理相关接口
